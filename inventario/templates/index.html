@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abonos Registrados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="\static\styles.css">
+    <style>
+
+        body {
+            background: linear-gradient(to right, rgb(14, 14, 153), #8a0101); /* Fondo difuminado de azul a rojo */
+            padding-top: 50px; /* Espaciado superior */
+            color: #fff; /* Color de texto predeterminado */
+        }
+        .formulario h2 {
+            color: rgb(255, 255, 255); /* Cambia el color del título "Iniciar Sesión" */
+
+        }
+        .text {
+            text-align: right; /* Alinea el texto a la izquierda */
+        }
+        .table thead tr th {
+            background-color: rgba(0, 0, 0, 0); /* Fondo completamente transparente */
+            box-shadow: 0 0 10px 5px rgba(36, 36, 253, 1), 0 0 10px 5px rgba(255, 0, 0, 1);
+            color: #fff;
+            text-align: center; /* Centra el contenido del th */
+        }
+        .table tbody tr td {
+            background-color: rgba(0, 0, 0, 0); /* Fondo completamente transparente */
+            box-shadow: 0 0 5px 5px rgba(36, 36, 253, 1), 0 0 5px 5px rgba(255, 0, 0, 1);
+            color: #fff;
+            text-align: center; /* Centra el contenido del th */
+        }
+        .table tbody tr td button {
+            background-color: rgba(255, 255, 255, 0.438); /* Fondo completamente transparente */
+            box-shadow: 0 4px 100px rgba(36, 36, 253, 0.8), 0 4px 100px rgba(255, 0, 0, 0.8);
+            color: #fff;
+            text-align: center; /* Centra el contenido del th */
+        }
+        button {
+            background-color: rgba(255, 255, 255, 0.171);
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container mt-1">
+        <p class="text">Bienvenido, {{ session.nombre_usuario }} <i class="fas fa-user"></i> | <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></p>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="formulario mt-2 mb-2">
+                    <h2 class="text-center mb-4"><i class="fa fa-list-ul "></i> Sistema de inventario </h2>
+                    <table id= "tabla_inv"class="table table-bordered table-hover" >
+                        <thead class="default">
+                            <tr>
+                                <th><i class="fa-solid fa-plug"></i>  Producto</th>
+                                <th><i class="fa-solid fa-boxes-stacked"></i>  Cantidad</th>
+                                <th><i class="fa-solid fa-laptop"></i>  Dispositivo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for producto in productos%}
+                                <tr>
+                                    <td>{{ producto[1] }}</td>
+                                    <td>{{ producto[2] }}</td>
+                                    <td>{{ producto[3] }}</td>
+                                    <td><button>Agregar</button>
+                                        <form id="delete-form-{{ producto[0] }}" action="/borrar/{{ producto[0] }}" method="post" style="display: inline;">
+                                            <button type="submit" data-toggle="modal" data-target="#confirmModal-{{ producto[0] }}">Borrar</button>
+                                        </form></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <button onclick="redirigirAagr_usos()"><i class="fas fa-external-link-alt"></i> Usos </button>
+                    <button onclick="redirigirAagregar()">
+                    <i class="fas fa-plus"></i>    Crear Tarea   
+                    </button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function redirigirAagregar() {
+        window.location.href = "{{ url_for('agregar_producto') }}";
+    }
+</script>
+<script>
+    function redirigirAagr_usos() {
+        window.location.href = "{{ url_for('agregar_uso') }}";
+    }
+</script>
+
+</html>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Registro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1><i class="fas fa-edit"></i> Editar Registro</h1>
+                <form action="{{ url_for('editar_registro', registro_id=registro.id) }}" method="POST">
+                    <div class="form-group">
+                        <label for="ip"><i class="fas fa-laptop"></i> IP:</label>
+                        <input type="text" id="ip" name="ip" class="form-control" value="{{ registro.ip }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre"><i class="fas fa-user"></i> Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" value="{{ registro.nombre }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="departamento"><i class="fas fa-building"></i> Departamento:</label>
+                        <select id="departamento" name="departamento" class="form-control" required onclick="mostrarDepartamentos()">
+                            <option value="">Seleccione un departamento</option>
+                            <option value="DGTIC">DGTIC</option>
+                            <option value="DTS">DTS</option>
+                            <option value="DGR">DGR</option>
+                            <option value="DGI">DGI</option>
+                            <option value="Secretarias">Secretarias</option>
+                            <option value="Servicios generales">Servicios generales</option>
+                            <option value="Guardias">Guardias</option>
+                            <option value="Bienestar">Bienestar</option>
+                            <option value="RRHH">RRHH</option>
+                            <option value="IIOO">IIOO</option>
+                            <option value="Finanzas">Finanzas</option>
+                            <option value="NPHBLT">NPHBLT</option>
+                            <option value="Fomacion y becas">Formacion y becas</option>
+                            <option value="Abastecimiento">Abastecimiento</option>
+                            <option value="Calidad de vida">Calidad de vida</option>
+                            <option value="Comunicaciones">Comunicaciones</option>
+                            <option value="Oficina de partes">Oficina de partes</option>
+                            <option value="Direccion">Direccion</option>
+                            <option value="Salud mental">Salud mental</option>
+                            <option value="Juridica">Juridica</option>
+                            <option value="Auditoria">Auditoria</option>
+                            <option value="Jardin">Jardin</option>
+                            <option value="Club escolar">Club escolar</option>
+                            <option value="PRAIS">PRAIS</option>
+                            <option value="Servicio tecnico">Servicio tecnico</option>
+                            <option value="Servidor">Servidor</option>
+                            <option value="Sidra">Sidra</option>
+                            <option value="Coordinacion">Coordinacion</option>
+                            <option value="Decomiso">Decomiso</option>
+                            <option value="UST">UST</option>
+                            <option value="UDO">UDO</option>
+                            <option value="Capacitacion">Capacitacion</option>
+                            <option value="USSOMA">USSOMA</option>
+
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="anexo"><i class="fas fa-phone"></i> Anexo:</label>
+                        <input type="text" id="anexo" name="anexo" class="form-control" value="{{ registro.anexo }}">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-2 mb-md-0">
+                            <button class="btn btn-success btn-block" onclick="window.location.href='/listar'" style="padding-left: 6px; padding-right: 6px;"><i class="fas fa-arrow-left"></i> Volver</button>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary btn-block" style="padding-left: 6px; padding-right: 6px;"><i class="fas fa-save"></i> Guardar Cambios</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Incluir Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>

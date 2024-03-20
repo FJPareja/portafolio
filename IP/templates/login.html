@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Incluir Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Incluir Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Estilos CSS personalizados -->
+    <style>
+        /* Estilos CSS personalizados */
+        body {
+            background-color: #f8f9fa; /* Color de fondo */
+            padding-top: 50px; /* Espaciado superior */
+        }
+        .formulario {
+            background-color: #fff; /* Color de fondo del formulario */
+            border-radius: 15px; /* Bordes redondeados */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+            padding: 20px; /* Espaciado interior */
+            transition: box-shadow 0.3s ease; /* Transición suave de la sombra */
+        }
+        .formulario:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Cambio de sombra al pasar el ratón */
+        }
+        .form-group {
+            margin-bottom: 20px; /* Margen inferior */
+        }
+        .btn-primary {
+            background-color: #007bff; /* Color de fondo del botón principal */
+            border-color: #007bff; /* Color del borde del botón principal */
+            transition: background-color 0.3s ease, border-color 0.3s ease; /* Transición suave de colores */
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Cambio de color de fondo al pasar el ratón */
+            border-color: #0056b3; /* Cambio de color del borde al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Ejemplo de formulario Bootstrap -->
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="formulario mt-5">
+                    <h2 class="text-primary text-center mb-4"><i class="fas fa-user"></i> Iniciar Sesión</h2>
+                    {% if mensaje %}
+                    <div class="alert alert-{{ tipo }}" role="alert">
+                        {{ mensaje }}
+                    </div>
+                    {% endif %}
+                    <form action="{{ url_for('login') }}" method="POST">
+                        <div class="form-group">
+                            <label for="username"><i class="fas fa-user"></i> Nombre de Usuario</label>
+                            <input type="text" name="username" class="form-control" id="username" placeholder="Introduce tu nombre de usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="password"><i class="fas fa-lock"></i> Contraseña</label>
+                            <input name="password" type="password" class="form-control" id="password" placeholder="Introduce tu contraseña">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Incluir Font Awesome JS (opcional, solo si necesitas funcionalidades avanzadas de los iconos) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+</body>
+</html>
